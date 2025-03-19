@@ -1,0 +1,15 @@
+{
+  "name": "json-util",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/JSON.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "https://github.com/thenku",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash.merge": "^4.6.9",
+    "lodash.merge": "^4.6.2"
+  }
+}
