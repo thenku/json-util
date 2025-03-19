@@ -2,7 +2,7 @@
   "name": "json-util",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/JSON.js",
+  "main": "dist/JSONUtil.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
