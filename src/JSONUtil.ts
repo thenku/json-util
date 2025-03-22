@@ -41,24 +41,38 @@ class JSONUtilClass{
 		}
 		return result;
 	}
+	deleteOnKeyPathsRef(obj:any, keypaths:string[][] = []){
+		let len1 = keypaths.length
+		while (len1--) {
+			const keypath = keypaths[len1];
+			if(this.hasKeyPath(obj, keypath)){
+				keypath.reduce((acc, key, index) => {
+					if (index === keypath.length - 1) {
+						delete acc[key];
+						return true;
+					}
+					return acc[key];
+				}, obj);
+			}
+		}
+		// keypaths.forEach((keypath) => {
+		// 	keypath.reduce((acc, key, index) => {
+		// 			if (index === keypath.length - 1) {
+		// 				delete acc[key];
+		// 				return true;
+		// 			}
+		// 			return acc[key];
+		// 	}, obj);
+		// });
+		return obj;
+	}
     keyPath2Array(keypath = "", sep = "/"){
 		return keypath.split(sep).filter((isEmpty)=>isEmpty);
 	}
 	array2Keypath(array:string[] = [], sep = "/"){
 		return array.join(sep);
 	}
-    deleteOnKeyPathsRef(obj:any, keypaths:string[][] = []){
-		keypaths.forEach((keypath) => {
-			keypath.reduce((acc, key, index) => {
-					if (index === keypath.length - 1) {
-						delete acc[key];
-						return true;
-					}
-					return acc[key];
-			}, obj);
-		});
-		return obj;
-	}
+    
 	searchColsGetRow1(obj:any, query:Record<string,string|number>, arrayKeyPath:string[]=[]){
 		const table = this.getValueUsingKeyArray(obj, arrayKeyPath);
 		if(!table)return null;
