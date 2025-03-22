@@ -4,9 +4,9 @@ export type ISortedHierarchy = Array<any | ISortedHierarchy>;
 declare class JSONUtilClass {
     getValueUsingKeyArray(obj: any, keypathArray?: (string | number)[]): any;
     setValueAt(obj: any, keypathArray: (string | number)[], val: any): any;
+    deleteOnKeyPathsRef(obj: any, keypaths?: string[][]): any;
     keyPath2Array(keypath?: string, sep?: string): string[];
     array2Keypath(array?: string[], sep?: string): string;
-    deleteOnKeyPathsRef(obj: any, keypaths?: string[][]): any;
     searchColsGetRow1(obj: any, query: Record<string, string | number>, arrayKeyPath?: string[]): any;
     searchArrayRowIndex(array: any[], query: Record<string, string | number>): number;
     searchColsGetRow1Regex(obj: any, query: Record<string, RegExp>, arrayKeyPath?: string[]): any;
