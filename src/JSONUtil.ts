@@ -42,29 +42,29 @@ class JSONUtilClass{
 		return result;
 	}
 	deleteOnKeyPathsRef(obj:any, keypaths:string[][] = []){
-		let len1 = keypaths.length
-		while (len1--) {
-			const keypath = keypaths[len1];
-			if(this.hasKeyPath(obj, keypath)){
-				keypath.reduce((acc, key, index) => {
-					if (index === keypath.length - 1) {
-						delete acc[key];
-						return true;
-					}
-					return acc[key];
-				}, obj);
-			}
-		}
-		// keypaths.forEach((keypath) => {
-		// 	keypath.reduce((acc, key, index) => {
-		// 			if (index === keypath.length - 1) {
-		// 				delete acc[key];
-		// 				return true;
-		// 			}
-		// 			return acc[key];
-		// 	}, obj);
-		// });
-		return obj;
+		if (!obj) {
+            return null;
+        }
+       
+        let len1 = keypaths.length;
+        while (len1--) {
+            const keypath = keypaths[len1];
+            const len2 = keypath.length;
+            let i = 0;
+            while (i < len2) {
+                //loop to see if node exists if it does then delete it
+                let key = keypath[i];
+                if (i == len2 - 1) {
+                    delete obj[key];
+                    break;
+                }
+                if (!obj[key]) {
+                    break;  //if node does not exist then break
+                }
+                obj = obj[key];
+                i++;
+            }
+        }
 	}
     keyPath2Array(keypath = "", sep = "/"){
 		return keypath.split(sep).filter((isEmpty)=>isEmpty);
